@@ -4,6 +4,7 @@ const Home = () => import('../views/home/Home')
 const Category = () => import('../views/category/Catgory')
 const Cart = () => import('../views/cart/Cart')
 const Profile = () => import('../views/profile/Profile')
+const Detail = () => import('../views/detail/Detail')
 
 // 解决ElementUI导航栏中的vue-router在3.0版本以上重复点菜单报错问题
 const originalPush = Router.prototype.push
@@ -32,6 +33,10 @@ const routes =[
   }, {
     path: '/profile',
     component: Profile
+  },
+  {
+    path: '/detail/:iid',
+    component:Detail
   }
 ]
 

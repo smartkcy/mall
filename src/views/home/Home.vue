@@ -35,6 +35,7 @@ import Scroll from "@/components/common/scroll/Scroll";
 import BackTop from "@/components/content/backTop/BackTop";
 
 import {getHomeMultidata, getHomeGoods} from "@/network/home";
+import {backTopMixin} from "@/common/mixin";
 
 import RecommendView from "@/views/home/childComps/RecommendView";
 import FeatureView from "@/views/home/childComps/FeatureView";
@@ -52,6 +53,7 @@ export default {
     Scroll,
     BackTop
   },
+  mixins:[backTopMixin],
   data() {
     return {
       banners: [],
@@ -62,7 +64,6 @@ export default {
         'sell': {page: 0, list: []}
       },
       currentType: 'pop',
-      isShowBackTop: false,
       tabOffsetTop: 0,
       isTabFixed: false
     }
@@ -103,9 +104,6 @@ export default {
       this.$refs.tabControl1.currentIndex =index;
       this.$refs.tabControl2.currentIndex =index;
     },
-    backClick() {
-      this.$refs.scroll.scrollTo(0, 0, 500)
-    },
     contenScroll(position) {
       //1.判断backTop是否显示
       this.isShowBackTop = (-position.y) > 1000
@@ -123,7 +121,7 @@ export default {
     },
     /*
     网络请求相关方法
-    * */
+    */
     getHomeMultidata() {
       getHomeMultidata().then(res => {
         this.banners = res.data.banner.list
